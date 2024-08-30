@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\EmployeeServiceProvider::class,
         App\Providers\ProductServiceProvider::class,
+        App\Providers\RequestItemServiceProvider::class,
 
     ],
 

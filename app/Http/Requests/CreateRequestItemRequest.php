@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Response as Resp;
+use App\Rules\CheckQuantity;
 
 class CreateRequestItemRequest extends FormRequest
 {
@@ -28,10 +29,19 @@ class CreateRequestItemRequest extends FormRequest
     {
         return [
             'nik'=>'required|numeric',
-            'name'=>'required',
-            'departement'=>'required',
-            'carts.*.product'=>'required',
-            'carts.*.quantity'=>'required|numeric',
+            'request_date'=>'required',
+            'carts.*.product.id'=>'required',
+            'carts.*.quantity'=>['required','min:1','numeric',
+            function ($attribute, $value, $fail) {
+                $index = explode('.', $attribute)[1];
+                $productId = $this->request->get('carts')[$index]['product']['id'];
+
+                $rule = new CheckQuantity($productId);
+                if (!$rule->passes($attribute, $value)) {
+                    $fail($rule->message());
+                }
+            }
+        ],
         ];
     }
 
@@ -39,6 +49,12 @@ class CreateRequestItemRequest extends FormRequest
     {
         return [
             'nik.required' => 'NIK Mohon di pilih',
+            'date.required' => 'Tanggal Mohon di Isi',
+            'carts.*.product.id'=>[
+                'required'=>'Barang Harus Di Pilih',
+            ],
+            'carts.*.quantity.min'=>'Kuantiti Minimal 1',
+            'carts.*.quantity.numeric'=>'Kuantiti Harus Berupa Angka',
         ];
     }
 

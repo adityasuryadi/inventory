@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Services\ProductService;
+use App\Services\RequestItemService;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Response as Resp;
@@ -15,7 +17,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(RequestItemService::class, function ($app) {
+            return new RequestItemService($app->make(ProductService::class));
+        });
     }
 
     /**

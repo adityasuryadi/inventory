@@ -22,3 +22,4 @@ Route::get('/employee/{nik}', 'EmployeeController@getEmployee');
 Route::get('/employees', 'EmployeeController@getEmployees');
 Route::get('/products', 'ProductController@getProducts');
 Route::post('/requestitem', 'RequestItemController@create');
+Route::get('/requestitems', 'RequestItemController@getRequestsItems');
