@@ -40,4 +40,13 @@ Start the server
 ```bash
   php artisan serve
 ```
+## Run Locally
 
+jika error
+```bash
+composer dump-autoload
+```
+
+```bash
+php artisan optimize
+```
