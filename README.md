@@ -40,9 +40,8 @@ Start the server
 ```bash
   php artisan serve
 ```
-## Run Locally
+## Jika error
 
-jika error
 ```bash
 composer dump-autoload
 ```
