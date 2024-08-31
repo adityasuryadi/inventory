@@ -30,7 +30,6 @@ class RequestItemServiceImpl implements RequestItemService
                 $itemDetails = [];
                 foreach ($request->carts as $key => $item) {
                     array_push($itemDetails, [
-                        'id'=>Str::uuid(),
                         'product_id' => $item['product']['id'],
                         'product_name'=>$item['product']['name'],
                         'location'=> $item['product']['location'],

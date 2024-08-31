@@ -14,7 +14,7 @@ class CreateRequestItemDetailsTable extends Migration
     public function up()
     {
         Schema::create('request_item_details', function (Blueprint $table) {
-            $table->uuid('id')->primary()->nullable(false);
+            $table->id();
             $table->uuid('product_id')->nullable(false);
             $table->string('product_name',255)->nullable(false);
             $table->uuid('request_item_id')->nullable(false);
