@@ -29,7 +29,7 @@ class CreateRequestItemRequest extends FormRequest
     {
         return [
             'nik'=>'required|numeric',
-            'request_date'=>'required',
+            'request_date'=>'required|date',
             'carts.*.product.id'=>'required',
             'carts.*.quantity'=>['required','min:1','numeric',
             function ($attribute, $value, $fail) {
